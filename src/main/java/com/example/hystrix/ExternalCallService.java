@@ -10,7 +10,7 @@ import java.net.URI;
 /**
  * 설명 :
  *
- * @author Hardy(조민국) / mingood92@gmail.com
+ * @author Minkuk Jo / mingood92@gmail.com
  * @since 2021. 01. 14
  */
 @Service
@@ -32,7 +32,11 @@ public class ExternalCallService {
             commandKey = "Server2",
             fallbackMethod = "callServer2Fallback",
             commandProperties = {
-                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "500")
+                    @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "500"),
+                    @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "10000"),
+                    @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "3"),
+                    @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "5"),
+                    @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"),
             }
     )
     public String callServer2WithFallback() {
