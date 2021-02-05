@@ -33,10 +33,10 @@ public class ExternalCallService {
             fallbackMethod = "callServer2Fallback",
             commandProperties = {
                     @HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "500"),
-                    @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "10000"),
+                    @HystrixProperty(name = "metrics.rollingStats.timeInMilliseconds", value = "10000"),    // 오류 감시 시간
                     @HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "3"),
                     @HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "5"),
-                    @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"),
+                    @HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "10000"),   // 서킷 오픈 유지 시간
             }
     )
     public String callServer2WithFallback() {
